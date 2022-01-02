@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World 2022 |
+            蓝桥杯--分糖果 |
         
         Adieu&#39;s Blog
     </title>
@@ -153,7 +153,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Hello World 2022</span>
+            <span class="title-hover-animation">蓝桥杯--分糖果</span>
         </div>
 
         
@@ -172,8 +172,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-01 18:53:53</span>
-        <span class="mobile">2022-01-01 18:53</span>
+        <span class="pc">2022-01-02 16:01:17</span>
+        <span class="mobile">2022-01-02 16:01</span>
     </span>
     
     
@@ -194,20 +194,32 @@
         
 
         <div class="article-content markdown-body">
-            <p>Welcome to <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有n个小朋友围坐成一圈。老师给每个小朋友随机发偶数个糖果，然后进行下面的游戏：</p>
+<p>每个小朋友都把自己的糖果分一半给左手边的孩子。</p>
+<p>一轮分糖后，拥有奇数颗糖的孩子由老师补给1个糖果，从而变成偶数。</p>
+<p>反复进行这个游戏，直到所有小朋友的糖果数都相同为止。</p>
+<p>你的任务是预测在已知的初始糖果情形下，老师一共需要补发多少个糖果。 </p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>程序首先读入一个整数N(2&lt; N&lt; 100)，表示小朋友的人数。<br>接着是一行用空格分开的N个偶数（每个偶数不大于1000，不小于2） </p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">2 2 4</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><ol>
+<li><p>根据题目给的数据范围先定义一个大小为101的数组，用于存放小朋友的糖果数。count定义为老师需要补发的糖数，初始为0，flag为判断是否所有小朋友糖数都相等的标志，初始时不相等，flag=0。</p>
+</li>
+<li><p>依次输入N，以及其他数据，把a[0]看成一个类似缓冲区的东西，暂时储存数据。a[i]为第i个小朋友。  </p>
+</li>
+<li><p>首先假设flag初始为0，即现在每人糖数不相等，需要进行以下操作进行重新分配。（即使现在糖数相同时 以下的操作也不影响目前的每个人的糖数，因为在每人都相等的情况下，无论进行多少次分配都不会改变数据。） 。</p>
+</li>
+<li><p>游戏开始，让缓冲区存放第一个小朋友的，循环语句，依次将前n-1个小朋友的糖果传一半给前一个人 ， 由于大家坐成一个圈，所以第n个小朋友把自己的一半去掉之后同时又得到第一个小朋友糖数的一半（即缓冲区的数目）。</p>
+</li>
+<li><p>进行一轮游戏后，用一个循环依次检查是否是奇数，并同时统计老师补发糖的数量。</p>
+</li>
+<li><p>最后判断是否每个人糖数是否相等，如果糖数都相等，flag=1，此时while(!flag）跳出循环，游戏结束。如果糖数不相等，继续游戏。                  </p>
+</li>
+</ol>
+<h2 id="参考代码："><a href="#参考代码：" class="headerlink" title="参考代码："></a>参考代码：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line">int <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    int a[101],n,i,count=0,flag=0;</span><br><span class="line">    scanf(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    a[0]=0; </span><br><span class="line">    <span class="keyword">for</span>(i=1;i&lt;=n;i++)</span><br><span class="line">    scanf(<span class="string">&quot;%d&quot;</span>,&amp;a[i]); </span><br><span class="line">    &#123;</span><br><span class="line">        a[0]=a[1]/2;</span><br><span class="line">        <span class="keyword">for</span>(i=1;i&lt;n;i++)</span><br><span class="line">        a[i]=a[i]/2+a[i+1]/2;</span><br><span class="line">        a[n]=a[n]/2+a[0];</span><br><span class="line">        <span class="keyword">for</span>(i=1;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]%2!=0)&#123;a[i]=a[i]+1;count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;                   </span><br><span class="line">        <span class="keyword">for</span>(i=1;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]==a[1])</span><br><span class="line">            flag=1;</span><br><span class="line">            <span class="keyword">else</span>&#123;flag=0;<span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;                   </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,count);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
-
+<h3 id="来源-C语言网"><a href="#来源-C语言网" class="headerlink" title="来源: C语言网"></a>来源: <a class="link"   target="_blank" rel="noopener" href="https://www.dotcpp.com/oj/problem1431.html?sid=3970937&lang=0#editor" >C语言网<i class="fas fa-external-link-alt"></i></a></h3>
         </div>
 
         
@@ -220,18 +232,33 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/2022/01/02/index/"
+                           href="/2022/01/02/poet/"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">蓝桥杯--分糖果</span>
+                                <span class="post-nav-title-item">Poet</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
                 
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/01/01/hello-world/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World 2022</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -349,7 +376,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5"><span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA"><span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A"><span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-text">参考代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A5%E6%BA%90-C%E8%AF%AD%E8%A8%80%E7%BD%91"><span class="nav-text">来源: C语言网</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
