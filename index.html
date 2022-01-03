@@ -14,14 +14,48 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="shortcut icon" href="/images/0.jpg">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/Head portrait.jpg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"世间真假。皆我所求，苦与乐，都可奉酒。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/Head portrait.jpg","favicon":"/images/0.jpg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"世间真假，皆我所求。苦与乐，都可奉酒。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
+    
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+    
+<script src="/js/typed.js"></script>
+
+    <style>
+      .custom{
+        font-size:x-large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight:bold;
+      }
+      .typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+    </style>
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 
@@ -44,8 +78,23 @@
         <div class="first-screen-container flex-center fade-in-down-animation">
     <div class="content flex-center">
         <div class="description">
-            世间真假。皆我所求，苦与乐，都可奉酒。
+            <p>世间真假，皆我所求。苦与乐，都可奉酒。</p>
+            <p>Weclom to Adieu's Blog</p>
+            <p>无人知此意，歌罢满帘风。</p>
         </div>
+        <span id="typed" class="custom"></span>
+        <script>
+          $(function(){
+              $("#typed").typed({
+                  stringsElement: $('.description'),
+                  typeSpeed: 150,
+                  backDelay: 600,
+                  loop: false,
+                  contentType: 'html',
+                  loopCount: false,
+              });
+          });
+          </script>
         
             <div class="s-icon-list">
                 
