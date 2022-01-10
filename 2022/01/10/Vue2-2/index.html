@@ -9,7 +9,7 @@
     
     <title>
         
-            Vue2--基本知识.1 |
+            Vue2--基本知识.2 |
         
         Adieu&#39;s Blog
     </title>
@@ -188,7 +188,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Vue2--基本知识.1</span>
+            <span class="title-hover-animation">Vue2--基本知识.2</span>
         </div>
 
         
@@ -207,8 +207,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-08 18:22:00</span>
-        <span class="mobile">2022-01-08 18:22</span>
+        <span class="pc">2022-01-10 17:00:00</span>
+        <span class="mobile">2022-01-10 17:00</span>
     </span>
     
     
@@ -229,48 +229,82 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="Vue模板语法有两大类："><a href="#Vue模板语法有两大类：" class="headerlink" title="Vue模板语法有两大类："></a>Vue模板语法有两大类：</h2><ol>
-<li>插值语法：   <pre><code> 功能：用于解析标签体内容。&lt;br&gt;
- 写法：&#123;&#123;xxx&#125;&#125;,xxx是JS表达式，且可以直接读取到data中的所有属性。&lt;br&gt;
-</code></pre>
-</li>
-<li>指令语法：   <pre><code> 功能：用于解析标签（包括：标签属性、标签体内容、绑定事件...）&lt;br&gt;
- 举例：v-bind:herf=&quot;xxx&quot; 或者 简写为 :herf=&quot;xxx&quot;, xxx同样为js表达式，且可以直接读取到data中的所有属性。&lt;br&gt;
- 备注：Vue中有许多指令，且形式都是：v-???。
-</code></pre>
-</li>
-</ol>
-<h3 id="代码案例："><a href="#代码案例：" class="headerlink" title="代码案例："></a>代码案例：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;dom&quot;</span>&gt;</span><br><span class="line">       &lt;p&gt;hello &#123;&#123;name.toUpperCase()&#125;&#125;&lt;/p&gt;</span><br><span class="line">       &lt;a v-bind:href=<span class="string">&quot;url&quot;</span>&gt;点击百度&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- v-bind可以简写为： 它是单向数据绑定，适用于所有元素。v-model 双向数据绑定，用于表单元素，简写为 v-model：--&gt;</span><br><span class="line">       </span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">       Vue.config.productionTip=<span class="literal">false</span>; //关闭提示</span><br><span class="line">       const x=new Vue(&#123;</span><br><span class="line">           el:<span class="string">&#x27;#dom&#x27;</span>,</span><br><span class="line">           data:&#123;</span><br><span class="line">               name:<span class="string">&#x27;ios&#x27;</span>,</span><br><span class="line">               url:<span class="string">&#x27;https://www.4399.com/&#x27;</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Vue–数据绑定"><a href="#Vue–数据绑定" class="headerlink" title="Vue–数据绑定"></a>Vue–数据绑定</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（1）v-bind 单向数据绑定 即修改页面value值但代码数据不改变。（任一元素）数据仅能从data流向页面。</span><br><span class="line"></span><br><span class="line">（2）v-model 双向数据绑定 即修改页面value值，代码数据修改。（注:此指令只能应用表单类元素,用于收集value值）数据不仅能从data流向页面，还可以从页面流向data。</span><br></pre></td></tr></table></figure>
-
-<h3 id="el和data的两种写法"><a href="#el和data的两种写法" class="headerlink" title="el和data的两种写法"></a>el和data的两种写法</h3><ul>
-<li>vue对象绑定的两种方式</li>
-</ul>
-<ol>
-<li>第一种 el绑定<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const x=new Vue(&#123;</span><br><span class="line">    el:<span class="string">&#x27;#dom&#x27;</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        name:<span class="string">&#x27;ios&#x27;</span>,</span><br><span class="line">        url:<span class="string">&#x27;https://www.4399.com/&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>第二种 挂载<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const x=new Vue(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        name:<span class="string">&#x27;ios&#x27;</span>,</span><br><span class="line">        url:<span class="string">&#x27;https://www.4399.com/&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">console.log(x);</span><br><span class="line">x.<span class="variable">$mount</span>(<span class="string">&#x27;#dom&#x27;</span>);</span><br></pre></td></tr></table></figure>
-注：el和挂载写法可任意选择。</li>
-</ol>
-<ul>
-<li>data的两种写法</li>
-</ul>
-<ol>
-<li>第一种：对象式<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const x=new Vue(&#123;</span><br><span class="line">    el:<span class="string">&#x27;#dom&#x27;</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        name:<span class="string">&#x27;ios&#x27;</span>,</span><br><span class="line">        url:<span class="string">&#x27;https://www.4399.com/&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>第二种：函数式<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    const x=new Vue(&#123;</span><br><span class="line">        el:<span class="string">&#x27;#dom&#x27;</span>,</span><br><span class="line">        data:<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            <span class="built_in">return</span>&#123;</span><br><span class="line">                name:<span class="string">&#x27;ios&#x27;</span>,</span><br><span class="line">            url:<span class="string">&#x27;https://www.4399.com/&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">//简写</span><br><span class="line">    <span class="function"><span class="title">data</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>&#123;</span><br><span class="line">                name:<span class="string">&#x27;ios&#x27;</span>,</span><br><span class="line">                url:<span class="string">&#x27;https://www.4399.com/&#x27;</span></span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-注：函数式必须有返回值且返回值为对象数值(不可使用箭头函数)，在使用vue组件中data必须写为函数式。</li>
-</ol>
-<h3 id="MVVM模型"><a href="#MVVM模型" class="headerlink" title="MVVM模型"></a>MVVM模型</h3><ol>
-<li>M：模型（Model）：data中的数据</li>
-<li>V：视图（View）：模板代码</li>
-<li>VM：视图模型（ViewModel）：Vue实例<br><br>注：vm身上所有的属性及Vue原型上所有的属性，在Vue模板中都可以直接使用。<img  
+            <h3 id="数据代理"><a href="#数据代理" class="headerlink" title="数据代理"></a>数据代理</h3><ol>
+<li>  Vue中的数据代理：<br>&nbsp;&nbsp;通过vm对象来代理data对象中属性的操作（读/写）</li>
+<li>  Vue中数据代理的好处:<br>&nbsp;&nbsp;更加方便的操作data中的数据</li>
+<li>  基本原理：<br>&nbsp;&nbsp;通过Object.defineProperty()把data对象中所有属性添加到vm上。为每一个添加到vm上的属性，都指定到 getter/setter。<br>&nbsp;&nbsp;在getter/setter内部去操作（读/写）data中对应的属性。<img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/vm.png"
+                     data-src="/images/datadaili.png"
                      
                 ></li>
 </ol>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><ol>
+<li>使用v-on:xxx 或 @xxx 绑定事件，其中xxx为事件名；</li>
+<li>事件的回调需要配置在methods对象中，最终会在vm上；</li>
+<li>methods中配置的函数，不要用箭头函数；否则this就不指向vm；</li>
+<li>methods中配置的函数，都是被vue所管理的函数，this的指向是vm 或者 组件实例对象。</li>
+<li>@click=”demo” 和 @click=”(#event)” 效果一致，后者可以传参；</li>
+</ol>
+<p>代码示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;basic-event&quot;</span>&gt;</span><br><span class="line">  &lt;button @click=<span class="string">&quot;counter += 1&quot;</span>&gt;Add 1&lt;/button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; <span class="built_in">times</span>.&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">Vue.createApp(&#123;</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      counter: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).mount(<span class="string">&#x27;#basic-event&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
+<h3 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h3><ul>
+<li>prevent：阻止默认事件（常用）；</li>
+<li>stop：阻止事件冒泡（常用）；</li>
+<li>once：事件只触发一次（常用）；</li>
+<li>capture：使用事件捕获模式；</li>
+<li>self：只有event.target是当前操作的元素时才触发事件；</li>
+<li>passive：事件的默认行为立即执行，无需等待事件回调执行完毕；</li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 阻止单击事件继续冒泡 --&gt;</span><br><span class="line">&lt;a @click.stop=<span class="string">&quot;doThis&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交事件不再重载页面 --&gt;</span><br><span class="line">&lt;form @submit.prevent=<span class="string">&quot;onSubmit&quot;</span>&gt;&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修饰符可以串联 --&gt;</span><br><span class="line">&lt;a @click.stop.prevent=<span class="string">&quot;doThat&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有修饰符 --&gt;</span><br><span class="line">&lt;form @submit.prevent&gt;&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;</span><br><span class="line">&lt;!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 --&gt;</span><br><span class="line">&lt;div @click.capture=<span class="string">&quot;doThis&quot;</span>&gt;...&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;</span><br><span class="line">&lt;!-- 即事件不是从内部元素触发的 --&gt;</span><br><span class="line">&lt;div @click.self=<span class="string">&quot;doThat&quot;</span>&gt;...&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>注：</p>
+<p>使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。</p>
+
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><ol>
+<li>常用的按键别名：</li>
+</ol>
+<ul>
+<li>.enter 回车</li>
+<li>.tab 换行</li>
+<li>.delete (捕获“删除”和“退格”键)</li>
+<li>.esc 退出</li>
+<li>.space 空格</li>
+<li>.up  上</li>
+<li>.down 下</li>
+<li>.left 左</li>
+<li>.righ 右</li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Alt + Enter --&gt;</span><br><span class="line">&lt;input @keyup.alt.enter=<span class="string">&quot;clear&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Ctrl + Click --&gt;</span><br><span class="line">&lt;div @click.ctrl=<span class="string">&quot;doSomething&quot;</span>&gt;Do something&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` --&gt;</span><br><span class="line">&lt;input @keyup.enter=<span class="string">&quot;submit&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Vue 未提供别名的按键，可以使用按键原始的key值去绑定，但需要转化为kebab-case（短横线命名）</li>
+</ol>
+<p>代码示例:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input @keyup.page-down=<span class="string">&quot;onPageDown&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>系统修饰符（用法特殊）：CTRL、alt、shift、meta</li>
+</ol>
+<ul>
+<li>需要配合keyup使用：按下修饰符的同时，再按下其他键。随后释放其他键，事件才触发。</li>
+<li>配合keydown使用：正常触发事件。</li>
+</ul>
+<ol start="4">
+<li><p>也可以使用keycode去指定具体的按键（少用）。</p>
+</li>
+<li><p>Vue.config.keyCodeS，自定义键名 = 键码，可以去定制键名别名。</p>
+</li>
+<li><p>特殊修饰符 .exact </p>
+</li>
+</ol>
+<ul>
+<li>.exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。</li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;</span><br><span class="line">&lt;button @click.ctrl=<span class="string">&quot;onClick&quot;</span>&gt;A&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;</span><br><span class="line">&lt;button @click.ctrl.exact=<span class="string">&quot;onCtrlClick&quot;</span>&gt;A&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;</span><br><span class="line">&lt;button @click.exact=<span class="string">&quot;onClick&quot;</span>&gt;A&lt;/button&gt;</span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -280,29 +314,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/01/10/Vue2-2/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Vue2--基本知识.2</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/01/02/index2/"
+                           href="/2022/01/08/Vue2-1/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">蓝桥杯--错误票据</span>
+                                <span class="post-nav-title-item">Vue2--基本知识.1</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -427,7 +446,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E6%9C%89%E4%B8%A4%E5%A4%A7%E7%B1%BB%EF%BC%9A"><span class="nav-text">Vue模板语法有两大类：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%A1%88%E4%BE%8B%EF%BC%9A"><span class="nav-text">代码案例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue%E2%80%93%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A"><span class="nav-text">Vue–数据绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el%E5%92%8Cdata%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95"><span class="nav-text">el和data的两种写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVM%E6%A8%A1%E5%9E%8B"><span class="nav-text">MVVM模型</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86"><span class="nav-text">数据代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-text">事件处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">事件修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="nav-text">键盘事件</span></a></li></ol>
     </div>
 </div>
         </aside>
