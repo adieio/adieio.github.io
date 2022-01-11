@@ -9,7 +9,7 @@
     
     <title>
         
-            Vue2--基本知识.2 |
+            Vue2--基本知识.3 |
         
         Adieu&#39;s Blog
     </title>
@@ -188,7 +188,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Vue2--基本知识.2</span>
+            <span class="title-hover-animation">Vue2--基本知识.3</span>
         </div>
 
         
@@ -207,8 +207,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-01-10 17:00:00</span>
-        <span class="mobile">2022-01-10 17:00</span>
+        <span class="pc">2022-01-11 18:00:00</span>
+        <span class="mobile">2022-01-11 18:00</span>
     </span>
     
     
@@ -229,82 +229,34 @@
         
 
         <div class="article-content markdown-body">
-            <h3 id="数据代理"><a href="#数据代理" class="headerlink" title="数据代理"></a>数据代理</h3><ol>
-<li>  Vue中的数据代理：<br>&nbsp;&nbsp;通过vm对象来代理data对象中属性的操作（读/写）</li>
-<li>  Vue中数据代理的好处:<br>&nbsp;&nbsp;更加方便的操作data中的数据</li>
-<li>  基本原理：<br>&nbsp;&nbsp;通过Object.defineProperty()把data对象中所有属性添加到vm上。为每一个添加到vm上的属性，都指定到 getter/setter。<br>&nbsp;&nbsp;在getter/setter内部去操作（读/写）data中对应的属性。<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/datadaili.png"
-                     
-                ></li>
-</ol>
-<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><ol>
-<li>使用v-on:xxx 或 @xxx 绑定事件，其中xxx为事件名；</li>
-<li>事件的回调需要配置在methods对象中，最终会在vm上；</li>
-<li>methods中配置的函数，不要用箭头函数；否则this就不指向vm；</li>
-<li>methods中配置的函数，都是被vue所管理的函数，this的指向是vm 或者 组件实例对象。</li>
-<li>@click=”demo” 和 @click=”(#event)” 效果一致，后者可以传参；</li>
-</ol>
-<p>代码示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;basic-event&quot;</span>&gt;</span><br><span class="line">  &lt;button @click=<span class="string">&quot;counter += 1&quot;</span>&gt;Add 1&lt;/button&gt;</span><br><span class="line">  &lt;p&gt;The button above has been clicked &#123;&#123; counter &#125;&#125; <span class="built_in">times</span>.&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">Vue.createApp(&#123;</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      counter: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).mount(<span class="string">&#x27;#basic-event&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h3><ul>
-<li>prevent：阻止默认事件（常用）；</li>
-<li>stop：阻止事件冒泡（常用）；</li>
-<li>once：事件只触发一次（常用）；</li>
-<li>capture：使用事件捕获模式；</li>
-<li>self：只有event.target是当前操作的元素时才触发事件；</li>
-<li>passive：事件的默认行为立即执行，无需等待事件回调执行完毕；</li>
+            <h3 id="计算属性–computed"><a href="#计算属性–computed" class="headerlink" title="计算属性–computed"></a>计算属性–computed</h3><ol>
+<li>定义：要用的属性不存在，要通过已有属性计算得来。</li>
+<li>原理：底层借助了Object.defineproperty方法提供的getter和setter.</li>
+<li>get函数什么时候执行?<br>(1). 初次读取时会执行一次.<br>(2). 当依赖的数据发生改变时会被在再次调用.</li>
+<li>优势:与methods实现相比,内部有缓存机制(复用),效率更高,调试更方便.</li>
+<li>备注:<ul>
+<li>计算属性最终会出现在vm上,直接读取使用即可.</li>
+<li>如果计算属性要被修改,那必须写set函数去响应修改,且set中要引起计算时依赖的数据发生改变.</li>
 </ul>
-<p>代码示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 阻止单击事件继续冒泡 --&gt;</span><br><span class="line">&lt;a @click.stop=<span class="string">&quot;doThis&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 提交事件不再重载页面 --&gt;</span><br><span class="line">&lt;form @submit.prevent=<span class="string">&quot;onSubmit&quot;</span>&gt;&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修饰符可以串联 --&gt;</span><br><span class="line">&lt;a @click.stop.prevent=<span class="string">&quot;doThat&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有修饰符 --&gt;</span><br><span class="line">&lt;form @submit.prevent&gt;&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;</span><br><span class="line">&lt;!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 --&gt;</span><br><span class="line">&lt;div @click.capture=<span class="string">&quot;doThis&quot;</span>&gt;...&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;</span><br><span class="line">&lt;!-- 即事件不是从内部元素触发的 --&gt;</span><br><span class="line">&lt;div @click.self=<span class="string">&quot;doThat&quot;</span>&gt;...&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>注：</p>
-<p>使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。</p>
-
-<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><ol>
-<li>常用的按键别名：</li>
-</ol>
-<ul>
-<li>.enter 回车</li>
-<li>.tab 换行（特殊，必须配合keydown使用）</li>
-<li>.delete (捕获“删除”和“退格”键)</li>
-<li>.esc 退出</li>
-<li>.space 空格</li>
-<li>.up  上</li>
-<li>.down 下</li>
-<li>.left 左</li>
-<li>.righ 右</li>
-</ul>
-<p>代码示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Alt + Enter --&gt;</span><br><span class="line">&lt;input @keyup.alt.enter=<span class="string">&quot;clear&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Ctrl + Click --&gt;</span><br><span class="line">&lt;div @click.ctrl=<span class="string">&quot;doSomething&quot;</span>&gt;Do something&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` --&gt;</span><br><span class="line">&lt;input @keyup.enter=<span class="string">&quot;submit&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Vue 未提供别名的按键，可以使用按键原始的key值去绑定，但需要转化为kebab-case（短横线命名）</li>
+</li>
 </ol>
 <p>代码示例:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input @keyup.page-down=<span class="string">&quot;onPageDown&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;computed-basics&quot;</span>&gt;</span><br><span class="line">  &lt;p&gt;Has published books:&lt;/p&gt;</span><br><span class="line">  &lt;span&gt;&#123;&#123; publishedBooksMessage &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vue.createApp(&#123;</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      author: &#123;</span><br><span class="line">        name: <span class="string">&#x27;John Doe&#x27;</span>,</span><br><span class="line">        books: [</span><br><span class="line">          <span class="string">&#x27;Vue 2 - Advanced Guide&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Vue 3 - Basic Guide&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;Vue 4 - The Mystery&#x27;</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    // 计算属性的 getter</span><br><span class="line">    <span class="function"><span class="title">publishedBooksMessage</span></span>() &#123;</span><br><span class="line">      // `this` 指向 vm 实例</span><br><span class="line">      <span class="built_in">return</span> this.author.books.length &gt; 0 ? <span class="string">&#x27;Yes&#x27;</span> : <span class="string">&#x27;No&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).mount(<span class="string">&#x27;#computed-basics&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//含<span class="built_in">set</span>方法的计算属性</span><br><span class="line">// ...</span><br><span class="line">computed: &#123;</span><br><span class="line">  fullName: &#123;</span><br><span class="line">    // getter</span><br><span class="line">    <span class="function"><span class="title">get</span></span>() &#123;</span><br><span class="line">      <span class="built_in">return</span> this.firstName + <span class="string">&#x27; &#x27;</span> + this.lastName</span><br><span class="line">    &#125;,</span><br><span class="line">    // setter</span><br><span class="line">    <span class="built_in">set</span>(newValue) &#123;</span><br><span class="line">      const names = newValue.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">      this.firstName = names[0]</span><br><span class="line">      this.lastName = names[names.length - 1]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>系统修饰符（用法特殊）：CTRL、alt、shift、meta</li>
-</ol>
-<ul>
-<li>需要配合keyup使用：按下修饰符的同时，再按下其他键。随后释放其他键，事件才触发。</li>
-<li>配合keydown使用：正常触发事件。</li>
+<p>注:当程序仅需使用get读取时可简写计算属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  <span class="function"><span class="title">fullName</span></span>()&#123;</span><br><span class="line">      <span class="built_in">return</span> this.firstName + <span class="string">&#x27; &#x27;</span> + this.lastName</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 相当于使用get函数</span><br></pre></td></tr></table></figure>
+
+<h3 id="监视属性–watch"><a href="#监视属性–watch" class="headerlink" title="监视属性–watch"></a>监视属性–watch</h3><ol>
+<li>当被监视的属性变化时,回调函数自动调用,进行相关操作.</li>
+<li>监视的属性必须存在,才能进行监视.</li>
+<li>监视的两种写法:<ul>
+<li>new Vue时传入watch配置.</li>
+<li>通过vm.$watch监视.</li>
 </ul>
-<ol start="4">
-<li><p>也可以使用keycode去指定具体的按键（少用）。</p>
-</li>
-<li><p>Vue.config.keyCodeS，自定义键名 = 键码，可以去定制键名别名。</p>
-</li>
-<li><p>特殊修饰符 .exact </p>
 </li>
 </ol>
-<ul>
-<li>.exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。</li>
-</ul>
-<p>代码示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;</span><br><span class="line">&lt;button @click.ctrl=<span class="string">&quot;onClick&quot;</span>&gt;A&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;</span><br><span class="line">&lt;button @click.ctrl.exact=<span class="string">&quot;onCtrlClick&quot;</span>&gt;A&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;</span><br><span class="line">&lt;button @click.exact=<span class="string">&quot;onClick&quot;</span>&gt;A&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<p>代码示例:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const vm = Vue.createApp(&#123;</span><br><span class="line">  <span class="function"><span class="title">data</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      firstName: <span class="string">&#x27;Foo&#x27;</span>,</span><br><span class="line">      lastName: <span class="string">&#x27;Bar&#x27;</span>,</span><br><span class="line">      fullName: <span class="string">&#x27;Foo Bar&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    firstName(val) &#123;</span><br><span class="line">      this.fullName = val + <span class="string">&#x27; &#x27;</span> + this.lastName</span><br><span class="line">    &#125;,</span><br><span class="line">    lastName(val) &#123;</span><br><span class="line">      this.fullName = this.firstName + <span class="string">&#x27; &#x27;</span> + val</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).mount(<span class="string">&#x27;#demo&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
         </div>
 
         
@@ -314,29 +266,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/01/11/Vue2-3/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Vue2--基本知识.3</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/01/08/Vue2-1/"
+                           href="/2022/01/10/Vue2-2/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Vue2--基本知识.1</span>
+                                <span class="post-nav-title-item">Vue2--基本知识.2</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -461,7 +398,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86"><span class="nav-text">数据代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-text">事件处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">事件修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="nav-text">键盘事件</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E2%80%93computed"><span class="nav-text">计算属性–computed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E8%A7%86%E5%B1%9E%E6%80%A7%E2%80%93watch"><span class="nav-text">监视属性–watch</span></a></li></ol>
     </div>
 </div>
         </aside>
